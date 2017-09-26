@@ -1,5 +1,5 @@
 {
-  "name": "@robust-team/angular-forms",
+  "name": "@vox/angular-forms",
   "version": "1.2.0",
   "license": "MIT",
   "description": "A Simple Angular Forms Generator",
@@ -28,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/robust-team/angular-forms.git"
+    "url": "git+https://github.com/vox-tecnologia/angular-forms.git"
   },
   "keywords": [
     "angular",
