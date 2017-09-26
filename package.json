@@ -1,6 +1,6 @@
 {
-  "name": "@vox/angular-forms",
-  "version": "1.2.0",
+  "name": "@isaac.vox/angular-forms",
+  "version": "1.2.1",
   "license": "MIT",
   "description": "A Simple Angular Forms Generator",
   "main": "./bundles/angular-forms.umd.js",
@@ -36,9 +36,9 @@
   ],
   "author": "Robust Team",
   "bugs": {
-    "url": "https://github.com/robust-team/angular-forms/issues"
+    "url": "https://github.com/vox-tecnologia/angular-forms/issues"
   },
-  "homepage": "https://github.com/robust-team/angular-forms#readme",
+  "homepage": "https://github.com/vox-tecnologia/angular-forms#readme",
   "dependencies": {
     "@angular/common": "^4.0.0",
     "@angular/core": "^4.0.0",
@@ -95,5 +95,9 @@
     "webpack-dev-server": "^2.2.0",
     "webpack-rxjs-externals": "^1.0.0",
     "zone.js": "^0.8.14"
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "test"
   }
 }
