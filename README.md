@@ -3,8 +3,8 @@
 [![Build Status](https://travis-ci.org/robust-team/angular-forms.svg?branch=master)](https://travis-ci.org/robust-team/angular-forms)
 [![codecov](https://codecov.io/gh/robust-team/angular-forms/branch/master/graph/badge.svg)](https://codecov.io/gh/robust-team/angular-forms)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/253b251df47e47998d27404a6746978b)](https://www.codacy.com/app/dudemelo/angular-forms?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=robust-team/angular-forms&amp;utm_campaign=Badge_Grade)
-[![NPM Version](https://img.shields.io/npm/v/@robust-team/angular-forms.svg)](http://npmjs.org/package/@robust-team/angular-forms)
-[![NPM Download](https://img.shields.io/npm/dm/@robust-team/angular-forms.svg)](http://npmjs.org/package/@robust-team/angular-forms)
+[![NPM Version](https://img.shields.io/npm/v/@voxtecnologia/angular-forms.svg)](http://npmjs.org/package/@voxtecnologia/angular-forms)
+[![NPM Download](https://img.shields.io/npm/dm/@voxtecnologia/angular-forms.svg)](http://npmjs.org/package/@voxtecnologia/angular-forms)
 [![Issue Stats](http://issuestats.com/github/robust-team/angular-forms/badge/pr?style=flat)](http://issuestats.com/github/robust-team/angular-forms)
 [![Issue Stats](http://issuestats.com/github/robust-team/angular-forms/badge/issue?style=flat)](http://issuestats.com/github/robust-team/angular-forms)
 
@@ -24,19 +24,19 @@ A Simple Form Generator for Angular.
 1. Install AngularForms using npm:
 
 ```
-npm i @robust-team/angular-forms
+npm i @voxtecnologia/angular-forms
 ```
 
 2. Import the styles.css:
 
 ```
-node_modules/@robust-team/angular-forms/assets/css/styles.css
+node_modules/@voxtecnologia/angular-forms/assets/css/styles.css
 ```
 
 3. Import the AngularFormsModule into Module class.
 
 ```typescript
-import { AngularFormsModule } from '@robust-team/angular-forms';
+import { AngularFormsModule } from '@voxtecnologia/angular-forms';
 
 @NgModule({
   imports: [

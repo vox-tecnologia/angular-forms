@@ -8,8 +8,8 @@ const pkg = JSON.parse(fs.readFileSync('./package.json').toString());
 
 export default {
   entry: {
-    '@robust-team/angular-forms.umd': path.join(__dirname, 'src', 'index.ts'),
-    '@robust-team/angular-forms.umd.min': path.join(__dirname, 'src', 'index.ts'),
+    '@voxtecnologia/angular-forms.umd': path.join(__dirname, 'src', 'index.ts'),
+    '@voxtecnologia/angular-forms.umd.min': path.join(__dirname, 'src', 'index.ts'),
   },
   output: {
     path: path.join(__dirname, 'dist', 'bundles'),
