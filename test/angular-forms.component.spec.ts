@@ -13,6 +13,8 @@ import { ValidationMessageModule } from '../src/validation-message/validation-me
 import { Select, Text, Dependency, DependencyCriteria } from '../src/question';
 import { DemoService } from '../demo/demo.service';
 import { TooltipModule } from '../src/tooltip/tooltip.module';
+import { Fieldset } from '../src/group/fieldset';
+
 
 describe('AngularFormsComponent', () => {
   let component: AngularFormsComponent;
@@ -38,13 +40,14 @@ describe('AngularFormsComponent', () => {
     .compileComponents();
   }));
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     fixture = TestBed.createComponent(AngularFormsComponent);
     component = fixture.componentInstance;
     component.groups = (new DemoService()).getForm();
+    component.ngOnChanges(<any>{ groups: { currentValue: (new DemoService()).getForm() } });
 
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
     assert(component);
@@ -71,6 +74,10 @@ describe('AngularFormsComponent', () => {
 
   it('should call submit method', () => {
     component.submit();
+  });
+
+  it('should call getGroupByCode method', () => {
+    assert.isTrue(component.getGroupByCode('G-01') instanceof Fieldset);
   });
 
   it('should not hide a question without dependencies', () => {
