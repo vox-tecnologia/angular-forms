@@ -1,0 +1,34 @@
+{
+  "name": "@voxtecnologia/angular-forms",
+  "version": "2.1.0",
+  "license": "MIT",
+  "description": "A Simple Angular Forms Generator",
+  "main": "./bundles/angular-forms.umd.js",
+  "module": "./index.js",
+  "typings": "./index.d.ts",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vox-tecnologia/angular-forms.git"
+  },
+  "keywords": [
+    "angular",
+    "forms"
+  ],
+  "author": "Vox Tecnologia",
+  "bugs": {
+    "url": "https://github.com/vox-tecnologia/angular-forms/issues"
+  },
+  "homepage": "https://github.com/vox-tecnologia/angular-forms#readme",
+  "peerDependencies": {
+    "@angular/core": ">= 4 < 6",
+    "@angular/forms": ">= 4 < 6",
+    "@fagnerlima/ng-mask": ">= 2",
+    "@ngx-translate/core": ">= 7 < 10"
+  },
+  "devDependencies": {},
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  }
+}

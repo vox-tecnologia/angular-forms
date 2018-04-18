@@ -1,5 +1,6 @@
 import { TranslateLoader } from '@ngx-translate/core';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 const i18n: { [lang: string]: Object } = {
   'en-US': {
