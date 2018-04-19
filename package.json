@@ -1,6 +1,6 @@
 {
   "name": "@voxtecnologia/angular-forms",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "license": "MIT",
   "description": "A Simple Angular Forms Generator",
   "main": "./bundles/angular-forms.umd.js",
