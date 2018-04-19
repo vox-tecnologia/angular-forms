@@ -210,7 +210,7 @@ export class AngularFormsComponent implements OnInit, OnChanges, AfterViewChecke
     if (changes['groups']) {
       const groups: Group<any>[] = changes['groups'].currentValue;
 
-      if (groups && groups.length) {
+      if (!!groups) {
         this._status = Status.LOADING;
         this.load()
           .then(() => {
