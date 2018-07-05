@@ -16,7 +16,7 @@ export class ReactiveFormsFactory {
       try {
         const formGroup: FormGroup = new FormGroup({});
 
-        for await (const group of groups) {
+        for (const group of await Promise.all(groups)) {
           let control: FormGroup | FormArray;
 
           if (GroupType.FIELDSET === group.type) {
@@ -44,7 +44,7 @@ export class ReactiveFormsFactory {
       try {
         const formGroup: FormGroup = new FormGroup({});
 
-        for await (const question of questions) {
+        for (const question of await Promise.all(questions)) {
           const validators: ValidatorFn[] = await ReactiveFormsFactory.createValidators(question.validations);
           const answer: any = !question.answer && (<Choice>question).defaultOption ? (<Choice>question).defaultOption : question.answer;
           const formState: any = { value: answer, disabled: checkDisabledQuestions && question.disabled };
@@ -69,7 +69,7 @@ export class ReactiveFormsFactory {
       try {
         const formArray: FormArray = new FormArray([]);
 
-        for await (const question of questions) {
+        for (const question of await Promise.all(questions)) {
           const group: FormGroup = new FormGroup({});
 
           for (const column of question) {
@@ -91,7 +91,7 @@ export class ReactiveFormsFactory {
       try {
         const validators: ValidatorFn[] = [];
 
-        for await (const validation of validations) {
+        for (const validation of await Promise.all(validations)) {
           const validatorFactoryHandler: ValidatorFactoryHandler = (new RequiredValidator())
             .append(new EmailValidator())
             .append(new MaxValidator())

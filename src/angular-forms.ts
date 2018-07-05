@@ -10,12 +10,12 @@ export class AngularForms {
       try {
         const groups: Group<any>[] = [];
 
-        for await (const group of jsonGroups) {
+        for (const group of await Promise.all(jsonGroups)) {
           const groupBuilder: GroupBuilder<any> = GroupType.FIELDSET === group.type
             ? new FieldsetBuilder(group.code, group.description)
             : new DataTableBuilder(group.code, group.description, (<DataTable>group).validations);
 
-          for await (const question of group.questions) {
+          for (const question of await Promise.all(group.questions)) {
             groupBuilder.addQuestion(
               GroupType.FIELDSET === group.type
                 ? QuestionFactory.createQuestion(<Question<any>>question)
