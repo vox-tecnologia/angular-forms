@@ -1,11 +1,13 @@
-import { AfterViewChecked, ChangeDetectorRef, Component, EventEmitter,
-  Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  AfterViewChecked, ChangeDetectorRef, Component, EventEmitter,
+  Input, OnChanges, OnInit, Output, SimpleChanges
+} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 import { TranslateService } from '@ngx-translate/core';
 
 import { AngularForms, Status } from '.';
-import { Group } from './group';
+import { Group, GroupType } from './group';
 import { DependencyService, Select, SelectService, Question } from './question';
 import { ReactiveFormsFactory } from './factory';
 import { StringUtils } from './util';
@@ -201,7 +203,7 @@ export class AngularFormsComponent implements OnInit, OnChanges, AfterViewChecke
   public constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private translateService: TranslateService
-  ) { }
+  ) {}
 
   public ngOnInit(): void {
     this.configTranslate();
@@ -209,6 +211,7 @@ export class AngularFormsComponent implements OnInit, OnChanges, AfterViewChecke
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['groups']) {
+      this.data = changes['groups'].currentValue;
       const groups: Group<any>[] = changes['groups'].currentValue;
 
       if (!!groups) {
@@ -254,7 +257,7 @@ export class AngularFormsComponent implements OnInit, OnChanges, AfterViewChecke
   }
 
   public getForm(): { valid: boolean, value: Object } {
-    return { valid: this.isValid(), value: this.getAnswersGroups() };
+    return {valid: this.isValid(), value: this.getAnswersGroups()};
   }
 
   public isPristine(): boolean {
@@ -287,16 +290,11 @@ export class AngularFormsComponent implements OnInit, OnChanges, AfterViewChecke
 
   public getAnswers(): Object {
     const answersGroups: Object = this.getAnswersGroups();
+    const newAnswers: Array<Object> = this.getNewAnswers();
     const answers: Object = {};
 
-    const newAnswers: boolean = this.data.some((group: any) => {
-      return group.questions.some((question: any) => {
-        return question.groupQuestionId && question.quizId;
-      });
-    });
-
-    if (newAnswers) {
-      return this.getNewAnswers();
+    if (newAnswers.length) {
+      return newAnswers;
     }
 
     Object.keys(answersGroups).forEach((groupIndex: string) => {
@@ -316,35 +314,34 @@ export class AngularFormsComponent implements OnInit, OnChanges, AfterViewChecke
   public getNewAnswers(): any {
     const answersGroups: any = this.getAnswersGroups();
 
-    const answers: any = this.data.reduce((groups: any, group: any) => {
-      if (answersGroups[group.code].length) {
-        groups[group.code] = group.questions.map((questions: any, index: number) => {
-          return questions.reduce((accumulator: any, question: any) => {
-            accumulator[question.name] = {
-              [question.quizId]: {
-                [question.groupQuestionId]: answersGroups[group.code][index][question.name]
-              }
-            };
-
-            return accumulator;
-          }, {});
+    const answers: Array<Object> = this.data.reduce((answers, group) => {
+      if (GroupType.FIELDSET === group.type) {
+        group.questions.map(question => {
+          if (question.quizId) {
+            answers.push({
+              questionario: question.quizId,
+              grupo: question.groupId,
+              pergunta: question.questionId,
+              resposta: answersGroups[group.code][question.code]
+            });
+          }
         });
-
-        return groups;
+      } else {
+        group.questions[0].map(question => {
+          if (question.quizId) {
+            answers.push({
+              questionario: question.quizId,
+              grupo: question.groupId,
+              pergunta: question.questionId,
+              nome: question.name,
+              resposta: answersGroups[group.code][0][question.name]
+            });
+          }
+        });
       }
 
-      groups[group.code] = group.questions.reduce((questions: any, question: any) => {
-        questions[question.code] = {
-          [question.quizId]: {
-            [question.groupQuestionId]: answersGroups[group.code][question.code]
-          }
-        };
-
-        return questions;
-      }, {});
-
-      return groups;
-    }, {});
+      return answers;
+    }, []);
 
     return answers;
   }
@@ -368,7 +365,6 @@ export class AngularFormsComponent implements OnInit, OnChanges, AfterViewChecke
   private async load(): Promise<void> {
     return new Promise<void>(async (resolve: () => void, reject: (error: Error) => void) => {
       try {
-        this.data = this.groups;
         this.groups = await AngularForms.fromJson(this.groups);
         this.formGroup = await ReactiveFormsFactory.createFormGroupFromGroups(this.groups);
         resolve();
