@@ -366,14 +366,3 @@ export class AngularFormsComponent implements OnInit, OnChanges, AfterViewChecke
     console.error(`[AngularForms] ${error.name} :: ${error.message}`);
   }
 }
-
-// {
-//   'MP0000': {
-//     questionario: 1,
-//     grupo: 1992,
-//     respostas: [
-//       {origem: 'água', uso: 'industria'},
-//       {origem: 'vento', uso: 'pecuaria'},
-//     ]
-//   }
-// }
