@@ -13,8 +13,9 @@ import { ReactiveFormsFactory } from '../factory';
       [ngClass]="{ 'read-only': readOnly }">
       <legend>
         <span [ngClass]="{ 'required-control': group.isRequired() && !readOnly }">
-          {{ group.description }}
+          {{ group.title }}
         </span>
+        {{ group.description }}
       </legend>
 
       <div class="table-responsive">
