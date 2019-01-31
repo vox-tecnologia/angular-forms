@@ -9,13 +9,14 @@ describe('AngularForms :: AngularForms', () => {
   it('should create a group', async () => {
     const jsonGroups: any[] = [{
       code: 'group-01',
-      description: 'A simple group',
+      title: 'A simple group',
       type: 'group',
-      questions: []
+      questions: [],
+      description: 'A simple group description',
     }];
     const groups: Group<any>[] = await AngularForms.fromJson(jsonGroups);
 
-    assert.deepEqual(groups, [new Fieldset('group-01', 'A simple group', [])]);
+    assert.deepEqual(groups, [new Fieldset('group-01', 'A simple group', [], 'A simple group description')]);
   });
 
   it('should create a group with a question', async () => {
@@ -37,7 +38,7 @@ describe('AngularForms :: AngularForms', () => {
     assert.deepEqual(groups, [
       new Fieldset('group-01', 'A simple group with a question', [
         new Text('question-01', 'A simple question', [], 'My answer', [])
-      ])
+      ], 'A simple group with description')
     ]);
   });
 
@@ -100,16 +101,22 @@ describe('AngularForms :: AngularForms', () => {
     const groups: Group<any>[] = await AngularForms.fromJson(jsonGroups);
 
     assert.deepEqual(groups, [
-      new DataTable('group-01', 'A simple datatable with questions', [
+      new DataTable(
+        'group-01',
+        'A simple datatable with questions',
         [
-          new Text('question-01', 'A simple question 1', [], null, [], false, null, null),
-          new Text('question-02', 'A simple question 2', [], null, [], false, null, null)
+          [
+            new Text('question-01', 'A simple question 1', [], null, [], false, null, null),
+            new Text('question-02', 'A simple question 2', [], null, [], false, null, null)
+          ],
+          [
+            new Text('question-01', 'A simple question 1', [], 'My answer 1', [], false, null, null),
+            new Text('question-02', 'A simple question 2', [], 'My answer 2', [], false, null, null)
+          ]
         ],
-        [
-          new Text('question-01', 'A simple question 1', [], 'My answer 1', [], false, null, null),
-          new Text('question-02', 'A simple question 2', [], 'My answer 2', [], false, null, null)
-        ]
-      ])
+        [],
+        'A simple datatable with description'
+      )
     ]);
   });
 

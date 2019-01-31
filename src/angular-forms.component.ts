@@ -22,8 +22,8 @@ import { StringUtils } from './util';
 
           <ng-container *ngSwitchCase="'group'">
             <fieldset class="rb-fieldset rb-fieldset-{{ group.code }}" [formGroup]="formGroup.get(group.code)">
-              <legend *ngIf="'Ungrouped' !== group.description">{{ group.description }}</legend>
-
+              <legend *ngIf="'Ungrouped' !== group.title">{{ group.title }}</legend>
+              <p>{{ group.description }}</p>
               <ng-container *ngFor="let question of group.questions">
 
                 <ng-container [ngSwitch]="question.type">
@@ -289,59 +289,35 @@ export class AngularFormsComponent implements OnInit, OnChanges, AfterViewChecke
   }
 
   public getAnswers(): Object {
-    const answersGroups: Object = this.getAnswersGroups();
-    const newAnswers: Array<Object> = this.getNewAnswers();
-    const answers: Object = {};
-
-    if (newAnswers.length) {
-      return newAnswers;
-    }
-
-    Object.keys(answersGroups).forEach((groupIndex: string) => {
-      if (answersGroups[groupIndex] instanceof Array) {
-        answers[groupIndex] = answersGroups[groupIndex];
-
-        return;
-      }
-
-      Object.keys(answersGroups[groupIndex])
-        .forEach((questionIndex: string) => answers[questionIndex] = answersGroups[groupIndex][questionIndex]);
-    });
-
-    return answers;
+    return this.getNewAnswers(
+      this.getAnswersGroups()
+    );
   }
 
-  public getNewAnswers(): any {
-    const answersGroups: any = this.getAnswersGroups();
-
-    const answers: Array<Object> = this.data.reduce((answers, group) => {
+  public getNewAnswers(answersGroups: Object): any {
+    const answers: any = this.data.reduce((answers, group) => {
       if (GroupType.FIELDSET === group.type) {
-        group.questions.map(question => {
-          if (question.quizId) {
-            answers.push({
-              questionario: question.quizId,
-              grupo: question.groupId,
-              pergunta: question.questionId,
-              resposta: answersGroups[group.code][question.code]
-            });
-          }
+        group.questions.forEach(question => {
+          answers[group.code] = {
+            questionario: question.quizId,
+            grupo: question.groupId,
+            pergunta: question.questionId,
+            resposta: answersGroups[group.code][question.code]
+          };
         });
       } else {
-        group.questions[0].map(question => {
-          if (question.quizId) {
-            answers.push({
-              questionario: question.quizId,
-              grupo: question.groupId,
-              pergunta: question.questionId,
-              nome: question.name,
-              resposta: answersGroups[group.code][0][question.name]
-            });
-          }
+        group.questions.map(questions => {
+          answers[group.code] = {
+            questionario: questions[0].quizId,
+            grupo: questions[0].groupId,
+            pergunta: questions[0].questionId,
+            respotas: answersGroups[group.code]
+          };
         });
       }
 
       return answers;
-    }, []);
+    }, {});
 
     return answers;
   }
@@ -390,3 +366,14 @@ export class AngularFormsComponent implements OnInit, OnChanges, AfterViewChecke
     console.error(`[AngularForms] ${error.name} :: ${error.message}`);
   }
 }
+
+// {
+//   'MP0000': {
+//     questionario: 1,
+//     grupo: 1992,
+//     respostas: [
+//       {origem: 'água', uso: 'industria'},
+//       {origem: 'vento', uso: 'pecuaria'},
+//     ]
+//   }
+// }
