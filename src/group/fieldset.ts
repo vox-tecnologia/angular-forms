@@ -5,10 +5,11 @@ export class Fieldset extends Group<Question<any>[]> {
 
   public constructor(
     code: string,
+    title: string,
+    questions: Question<any>[],
     description: string,
-    questions: Question<any>[]
   ) {
-    super(code, description, GroupType.FIELDSET, questions);
+    super(code, title, GroupType.FIELDSET, questions, description);
   }
 
   public getQuestionByName(name: string): Question<any> {

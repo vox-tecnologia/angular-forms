@@ -7,10 +7,11 @@ export class DataTableBuilder extends GroupBuilder<Question<any>[]> {
 
   public constructor(
     code: string,
+    title: string,
+    private validations: Validation[] = [],
     description: string,
-    private validations: Validation[] = []
   ) {
-    super(code, description);
+    super(code, title, description);
     this.questions = [];
   }
 
@@ -21,9 +22,10 @@ export class DataTableBuilder extends GroupBuilder<Question<any>[]> {
   public build(): DataTable {
     return new DataTable(
       this.code,
-      this.description,
+      this.title,
       this.questions,
-      this.validations
+      this.validations,
+      this.description
     );
   }
 }

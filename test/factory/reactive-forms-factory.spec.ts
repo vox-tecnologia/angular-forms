@@ -10,8 +10,8 @@ import { ValidationTypeNotFoundError } from '../../src/chain-of-responsibility/v
 describe('AngularForms :: Factory :: ReactiveFormsFactory', () => {
   it('should create a FormGroup from Groups', async () => {
     const groups: Group<any>[] = [
-      new Fieldset('group-01', 'Group 01', []),
-      new Fieldset('group-02', 'Group 02', [])
+      new Fieldset('group-01', 'Group 01', [], 'Group description'),
+      new Fieldset('group-02', 'Group 02', [], 'Group description')
     ];
     const formGroup: FormGroup = await ReactiveFormsFactory.createFormGroupFromGroups(groups);
 
@@ -20,8 +20,8 @@ describe('AngularForms :: Factory :: ReactiveFormsFactory', () => {
 
   it('should create a FormGroup from DataTables', async () => {
     const groups: Group<any>[] = [
-      new DataTable('group-01', 'Group 01', [], []),
-      new DataTable('group-02', 'Group 02', [], [])
+      new DataTable('group-01', 'Group 01', [], [], 'Group description'),
+      new DataTable('group-02', 'Group 02', [], [], 'Group description')
     ];
     const formGroup: FormGroup = await ReactiveFormsFactory.createFormGroupFromGroups(groups);
 

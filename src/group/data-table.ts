@@ -6,11 +6,12 @@ export class DataTable extends Group<Question<any>[][]> {
 
   public constructor(
     code: string,
-    description: string,
+    title: string,
     questions: Question<any>[][],
-    private _validations: Validation[] = []
+    private _validations: Validation[] = [],
+    description: string
   ) {
-    super(code, description, GroupType.DATATABLE, questions);
+    super(code, title, GroupType.DATATABLE, questions, description);
   }
 
   public getQuestionByName(name: string): Question<any> {

@@ -41,7 +41,7 @@ describe('DataTableComponent', () => {
 
     component = fixture.componentInstance;
     component.formGroup = new FormGroup({ 'G-01': new FormArray([]) });
-    component.group = new DataTable('G-01', 'Group 01', [[new Text('Q-01', 'Question 01', [])]]);
+    component.group = new DataTable('G-01', 'Group 01', [[new Text('Q-01', 'Question 01', [])]], [], 'Group description');
 
     fixture.detectChanges();
   }));

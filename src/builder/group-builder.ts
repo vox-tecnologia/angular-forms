@@ -7,7 +7,8 @@ export abstract class GroupBuilder<QuestionListType> {
 
   public constructor(
     protected code: string,
-    protected description: string
+    protected title: string,
+    protected description: string,
   ) { }
 
   public abstract addQuestion(question: QuestionListType): void;

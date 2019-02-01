@@ -7,9 +7,10 @@ export class FieldsetBuilder extends GroupBuilder<Question<any>> {
 
   public constructor(
     code: string,
-    description: string
+    title: string,
+    description: string,
   ) {
-    super(code, description);
+    super(code, title, description);
     this.questions = [];
   }
 
@@ -20,8 +21,9 @@ export class FieldsetBuilder extends GroupBuilder<Question<any>> {
   public build(): Fieldset {
     return new Fieldset(
       this.code,
+      this.title,
+      this.questions,
       this.description,
-      this.questions
     );
   }
 }
