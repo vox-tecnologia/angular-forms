@@ -311,7 +311,7 @@ export class AngularFormsComponent implements OnInit, OnChanges, AfterViewChecke
             questionario: questions[0].quizId,
             grupo: questions[0].groupId,
             pergunta: questions[0].questionId,
-            respostas: answersGroups[group.code]
+            resposta: answersGroups[group.code]
           };
         });
       }
