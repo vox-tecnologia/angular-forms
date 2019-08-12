@@ -47,6 +47,7 @@ export class DependencyService {
 
   private static setStatusFormControl(formControl: FormControl, hidden: boolean): void {
     if (hidden) {
+      formControl.reset();
       formControl.disable();
     } else {
       formControl.enable();
