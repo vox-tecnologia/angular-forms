@@ -31,7 +31,7 @@ import { StringUtils } from './util';
                       <ng-container *ngIf="!readOnly; else readOnlyCheckbox">
                         <div class="checkbox">
                           <label>
-                            <input type="checkbox" [name]="question.name" [formControlName]="question.name" />
+                            <input type="checkbox" [id]="question.name" [name]="question.name" [formControlName]="question.name" />
                             <span [ngClass]="{ 'required-control': question.isRequired() }">
                               {{ question.description }}
                             </span>
@@ -60,7 +60,7 @@ import { StringUtils } from './util';
                         </label>
                         <div class="radio" *ngFor="let option of question.options">
                           <label>
-                            <input type="radio" [name]="question.name" [value]="option" [formControlName]="question.name" />
+                            <input type="radio" [id]="question.name" [name]="question.name" [value]="option" [formControlName]="question.name" />
                             {{ option }}
                           </label>
                         </div> <!--/.radio-->
