@@ -2,7 +2,7 @@
 
 A Simple Form Generator for Angular.
 
-## Table of Contents
+### Table of Contents
 
 - [Requirements](#requirements)
 - [Usage](#usage)
