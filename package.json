@@ -42,7 +42,7 @@
   "homepage": "https://github.com/vox-tecnologia/angular-forms#readme",
   "dependencies": {
     "@angular/common": "^5.2.6",
-    "@angular/core": "^5.2.6",
+    "@angular/core": "^11.0.5",
     "@angular/forms": "^5.2.6",
     "@fagnerlima/ng-mask": "^2.2.1",
     "@ngx-translate/core": "^9.1.1",
