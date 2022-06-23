@@ -63,7 +63,7 @@
     "@types/sinon-chai": "^2.7.26",
     "@types/webpack": "^2.2.8",
     "chai": "^4.0.0",
-    "codecov": "^2.1.0",
+    "codecov": "^3.8.3",
     "codelyzer": "^3.0.0",
     "concurrently": "^3.0.0",
     "core-js": "^2.4.1",
